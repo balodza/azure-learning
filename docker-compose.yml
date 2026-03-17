@@ -1,5 +1,7 @@
 services:
   app:
+    container_name: azure-learning-container
+    image: azure-learning:latest
     build: .
     ports:
       - "8080:8080"
