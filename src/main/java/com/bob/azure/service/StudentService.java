@@ -1,0 +1,12 @@
+package com.bob.azure.service;
+
+
+import java.util.List;
+
+import com.bob.azure.dto.Student;
+
+public interface StudentService {
+    List<Student> getStudents();
+
+    Student getById(int id);
+}
