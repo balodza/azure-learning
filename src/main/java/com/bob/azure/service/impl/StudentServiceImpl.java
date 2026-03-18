@@ -21,26 +21,31 @@ public class StudentServiceImpl implements StudentService {
     
     private final FileService fileService;
     
+    private final JsonService jsonService;
+    
     @Override
     public List<Student> getStudents() {
-        fileService.uploadFile(getFileName("getStudents"), "getStudents()");
-        return studentRepository.getAllStudents();
+        final var allStudents = studentRepository.getAllStudents();
+        fileService.uploadFile(getFileName("getStudents"), jsonService.toString(allStudents));
+        return allStudents;
     }
     
     @Override
     public Student getById(int id) {
-        fileService.uploadFile(getFileName("getById"), "getById(%s)".formatted(id));
-        return studentRepository.getStudentById(id);
+        final var studentById = studentRepository.getStudentById(id);
+        fileService.uploadFile(getFileName("getById_%s".formatted(id)), jsonService.toString(studentById));
+        return studentById;
     }
 
     @Override
     public List<Student> search(String name) {
-        fileService.uploadFile(getFileName("search"), "search(%s)".formatted(name));
-        return studentRepository.search(name);
+        final var result = studentRepository.search(name);
+        fileService.uploadFile(getFileName("search_%s".formatted(name)), jsonService.toString(result));
+        return result;
     }
 
     private static String getFileName(String action) {
-        return System.nanoTime() + "_" + action;
+        return System.nanoTime() + "_" + action + ".json";
     }
 
 }
