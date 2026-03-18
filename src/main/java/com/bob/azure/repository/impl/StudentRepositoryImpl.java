@@ -46,7 +46,7 @@ public class StudentRepositoryImpl implements StudentRepository {
     @Override
     public Student search(String name) {
         final List<Student> candidates = dbStudents.stream()
-                .filter(student -> student.getFirstName().contains(name))
+                .filter(student -> student.getFirstName().toLowerCase().contains(name.toLowerCase()))
                 .toList();
         if (candidates.isEmpty()) {
             return null;
