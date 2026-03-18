@@ -11,5 +11,5 @@ public interface StudentRepository {
     
     Student getStudentById(int id);
 
-    Student search(String name);
+    List<Student> search(String name);
 }

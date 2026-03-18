@@ -35,7 +35,7 @@ public class TestController {
     }
     
     @GetMapping("/search")
-    public Student search(@RequestParam("name") String name) {
+    public List<Student> search(@RequestParam("name") String name) {
         log.info("search() method called, name: {}", name);
         return studentService.search(name);
     }

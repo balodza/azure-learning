@@ -10,5 +10,5 @@ public interface StudentService {
 
     Student getById(int id);
 
-    Student search(String name);
+    List<Student> search(String name);
 }
