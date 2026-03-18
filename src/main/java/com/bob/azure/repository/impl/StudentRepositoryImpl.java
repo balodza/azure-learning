@@ -43,6 +43,20 @@ public class StudentRepositoryImpl implements StudentRepository {
         return candidates.getFirst();
     }
 
+    @Override
+    public Student search(String name) {
+        final List<Student> candidates = dbStudents.stream()
+                .filter(student -> student.getFirstName().contains(name))
+                .toList();
+        if (candidates.isEmpty()) {
+            return null;
+        }
+        if (candidates.size() > 1) {
+            throw new IllegalStateException("Found more than 1 users with identical name: %s".formatted(name));
+        }
+        return candidates.getFirst();
+    }
+
     private Student getStudent(int id, String fName, String lName, String email, String groupName) {
         return Student.builder()
                 .id(id)

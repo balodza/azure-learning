@@ -10,4 +10,6 @@ public interface StudentRepository {
     List<Student> getAllStudents();
     
     Student getStudentById(int id);
+
+    Student search(String name);
 }

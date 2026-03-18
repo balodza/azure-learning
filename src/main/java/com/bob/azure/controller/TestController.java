@@ -33,4 +33,10 @@ public class TestController {
         log.info("getById() method called, id: {}", id);
         return studentService.getById(id);
     }
+    
+    @GetMapping("/search")
+    public Student search(@RequestParam("name") String name) {
+        log.info("search() method called, name: {}", name);
+        return studentService.search(name);
+    }
 }

@@ -9,4 +9,6 @@ public interface StudentService {
     List<Student> getStudents();
 
     Student getById(int id);
+
+    Student search(String name);
 }

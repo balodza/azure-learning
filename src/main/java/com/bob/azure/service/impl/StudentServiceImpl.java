@@ -27,5 +27,9 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.getStudentById(id);
     }
 
-    
+    @Override
+    public Student search(String name) {
+        return studentRepository.search(name);
+    }
+
 }
