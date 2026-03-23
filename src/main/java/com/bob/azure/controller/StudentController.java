@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/students")
 @Slf4j
 @RequiredArgsConstructor
-public class TestController {
+public class StudentController {
     private final StudentService studentService;
 
     @GetMapping
