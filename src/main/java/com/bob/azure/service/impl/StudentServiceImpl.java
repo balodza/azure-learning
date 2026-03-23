@@ -3,6 +3,7 @@ package com.bob.azure.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.collections4.IterableUtils;
 import org.springframework.stereotype.Service;
 
 import com.bob.azure.entity.Student;
@@ -24,9 +25,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> getStudents() {
-        final var allStudents = studentRepository.getAllStudents();
+        final var allStudents = studentRepository.findAll();
         fileService.uploadFile(getFileName("getStudents"), jsonService.toString(allStudents));
-        return allStudents;
+        return IterableUtils.toList(allStudents);
     }
 
     @Override
@@ -38,7 +39,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> search(String name) {
-        final var result = studentRepository.search(name);
+        final var result = studentRepository.getStudentsByFirstNameContains(name);
         fileService.uploadFile(getFileName("search_%s".formatted(name)), jsonService.toString(result));
         return result;
     }

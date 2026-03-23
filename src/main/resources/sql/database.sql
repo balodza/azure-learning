@@ -32,3 +32,10 @@ INSERT INTO Students(first_name, last_name, email, group_id)
 VALUES ('Yurik', 'Fedya', 'fedy@gmail.com', 2);
 INSERT INTO Students(first_name, last_name, email, group_id)
 VALUES ('Yurik Duplicate', 'Fedya', 'fedya@gmail.com', 2);
+
+INSERT INTO Students(first_name, last_name, email, group_id)
+VALUES ('Putiut', 'Catello', 'putiut@gmail.com', 1);
+INSERT INTO Students(first_name, last_name, email, group_id)
+VALUES ('Jessy', 'Catter', 'jessy@gmail.com', 1);
+INSERT INTO Students(first_name, last_name, email, group_id)
+VALUES ('Rocky', 'Red', 'redrocky@gmail.com', 1);
