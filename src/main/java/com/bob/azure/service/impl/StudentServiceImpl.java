@@ -3,10 +3,9 @@ package com.bob.azure.service.impl;
 
 import java.util.List;
 
-import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Service;
 
-import com.bob.azure.dto.Student;
+import com.bob.azure.entity.Student;
 import com.bob.azure.repository.StudentRepository;
 import com.bob.azure.service.FileService;
 import com.bob.azure.service.StudentService;
@@ -16,20 +15,20 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
-    
+
     private final StudentRepository studentRepository;
-    
+
     private final FileService fileService;
-    
+
     private final JsonService jsonService;
-    
+
     @Override
     public List<Student> getStudents() {
         final var allStudents = studentRepository.getAllStudents();
         fileService.uploadFile(getFileName("getStudents"), jsonService.toString(allStudents));
         return allStudents;
     }
-    
+
     @Override
     public Student getById(int id) {
         final var studentById = studentRepository.getStudentById(id);

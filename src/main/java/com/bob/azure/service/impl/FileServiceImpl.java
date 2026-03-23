@@ -6,18 +6,16 @@ import java.nio.charset.StandardCharsets;
 
 import org.springframework.stereotype.Service;
 
-import com.azure.identity.DefaultAzureCredential;
-import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.azure.storage.blob.BlobServiceClient;
 import com.azure.storage.blob.BlobServiceClientBuilder;
 import com.bob.azure.service.FileService;
 
 @Service
 public class FileServiceImpl implements FileService {
-    
+
     private static final String BLOB_CONTAINER = "bobsstoragecontainer";
     private static final String CONNECT_STR = System.getenv("AZURE_STORAGE_CONNECTION_STRING");
-    
+
     private static final BlobServiceClient BLOB_SERVICE_CLIENT = new BlobServiceClientBuilder()
             .connectionString(CONNECT_STR)
             .buildClient();

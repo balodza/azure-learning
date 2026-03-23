@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bob.azure.dto.Student;
+import com.bob.azure.dto.StudentDto;
+import com.bob.azure.mapper.StudentMapper;
 import com.bob.azure.service.StudentService;
 
 import lombok.RequiredArgsConstructor;
@@ -17,26 +18,29 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/students")
-@Slf4j
 @RequiredArgsConstructor
+@Slf4j
 public class StudentController {
     private final StudentService studentService;
+    private final StudentMapper studentMapper;
 
     @GetMapping
-    public List<Student> getAll() {
+    public List<StudentDto> getAll() {
         log.info("getAll() method called");
-        return studentService.getStudents();
+        return studentMapper.toStudentDtoList(studentService.getStudents());
     }
 
     @GetMapping("/{id}")
-    public Student getById(@PathVariable("id") int id) {
+    public StudentDto getById(@PathVariable("id") int id) {
         log.info("getById() method called, id: {}", id);
-        return studentService.getById(id);
+        return studentMapper.toStudentDto(studentService.getById(id));
     }
-    
+
     @GetMapping("/search")
-    public List<Student> search(@RequestParam("name") String name) {
+    public List<StudentDto> search(@RequestParam("name") String name) {
         log.info("search() method called, name: {}", name);
-        return studentService.search(name);
+        return studentMapper.toStudentDtoList(studentService.search(name));
     }
 }
+
+

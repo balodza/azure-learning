@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.bob.azure.dto.Group;
-import com.bob.azure.dto.Student;
+import com.bob.azure.entity.Group;
+import com.bob.azure.entity.Student;
 import com.bob.azure.repository.StudentRepository;
 import com.bob.azure.service.GroupService;
 
@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class GroupServiceImpl implements GroupService {
-    
+
     private final StudentRepository studentRepository;
     
     @Override

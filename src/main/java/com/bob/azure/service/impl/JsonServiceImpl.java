@@ -9,9 +9,9 @@ import tools.jackson.databind.ObjectMapper;
 @Service
 @RequiredArgsConstructor
 public class JsonServiceImpl implements JsonService {
-    
+
     private final ObjectMapper objectMapper;
-    
+
     @Override
     public String toString(Object o) {
         return objectMapper.writeValueAsString(o);

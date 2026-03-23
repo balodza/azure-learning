@@ -3,12 +3,11 @@ package com.bob.azure.repository.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.stereotype.Repository;
 
-import com.bob.azure.dto.Group;
-import com.bob.azure.dto.Student;
+import com.bob.azure.entity.Group;
+import com.bob.azure.entity.Student;
 import com.bob.azure.repository.StudentRepository;
 
 @Repository
@@ -17,10 +16,10 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     {
         dbStudents = new ArrayList<>();
-        dbStudents.add(getStudent(1, "Bob", "St", "bob@bob.bob", "PMI-12"));
-        dbStudents.add(getStudent(2, "Taras", "Klum", "tkl@gmail.com", "PMI-12"));
-        dbStudents.add(getStudent(3, "Yurik", "Fedya", "fedy@gmail.com", "PMI-12"));
-        dbStudents.add(getStudent(3, "Yurik Duplicate", "Fedya", "fedy@gmail.com", "PMI-12"));
+        dbStudents.add(getStudent(1, "Bob", "St", "bob@bob.bob"));
+        dbStudents.add(getStudent(2, "Taras", "Klum", "tkl@gmail.com"));
+        dbStudents.add(getStudent(3, "Yurik", "Fedya", "fedy@gmail.com"));
+        dbStudents.add(getStudent(4, "Yurik Duplicate", "Fedya", "fedy@gmail.com"));
     }
 
 
@@ -51,20 +50,20 @@ public class StudentRepositoryImpl implements StudentRepository {
         return candidates;
     }
 
-    private Student getStudent(int id, String fName, String lName, String email, String groupName) {
+    private Student getStudent(int id, String fName, String lName, String email) {
         return Student.builder()
                 .id(id)
                 .firstName(fName)
                 .lastName(lName)
                 .email(email)
-                .group(getGroup(groupName))
+                .group(getGroup("PMI-12"))
                 .build();
     }
 
     private Group getGroup(String name) {
         return Group.builder()
-                .id(UUID.randomUUID().toString())
-                .name(name)
+                .id(1) //TODO: refactor
+                .groupName(name)
                 .build();
     }
 }
