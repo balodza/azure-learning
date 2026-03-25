@@ -8,12 +8,12 @@ import lombok.Data;
 @Data
 @Builder
 public class CartDto {
-    private Integer id;
+    private int id;
     private String model;
     private int year;
     private String version;
-    private int engine_pistons;
-    private double engine_volume;
-    private int engine_power;
+    private int enginePistons;
+    private double engineVolume;
+    private int enginePower;
     private Make make;
 }

@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 @Builder
 public class MakeDto {
-    private Integer id;
+    private int id;
     private String name;
 }
