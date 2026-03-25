@@ -14,27 +14,36 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Students")
+@Table(name = "Car")
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Student {
+public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "first_name", nullable = false, length = 100)
-    private String firstName;
+    @Column(name = "model", nullable = false, length = 100)
+    private String model;
 
-    @Column(name = "last_name", nullable = false, length = 100)
-    private String lastName;
+    @Column(name = "year", nullable = false, length = 100)
+    private int year;
 
-    @Column(unique = true, length = 255)
-    private String email;
+    @Column(name = "version", length = 255)
+    private String version;
+
+    @Column(name = "engine_pistons")
+    private int engine_pistons;
+
+    @Column(name = "engine_volume")
+    private double engine_volume;
+
+    @Column(name = "engine_power")
+    private int engine_power;
 
     @ManyToOne
-    @JoinColumn(name = "group_id")
-    private Group group;
+    @JoinColumn(name = "make_id")
+    private Make make;
 }

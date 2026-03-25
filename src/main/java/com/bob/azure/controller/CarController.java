@@ -9,37 +9,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bob.azure.dto.StudentDto;
-import com.bob.azure.mapper.StudentMapper;
-import com.bob.azure.service.StudentService;
+import com.bob.azure.dto.CartDto;
+import com.bob.azure.mapper.CarMapper;
+import com.bob.azure.service.CarService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/cars")
 @RequiredArgsConstructor
 @Slf4j
-public class StudentController {
-    private final StudentService studentService;
-    private final StudentMapper studentMapper;
+public class CarController {
+    private final CarService carService;
+    private final CarMapper carMapper;
 
     @GetMapping
-    public List<StudentDto> getAll() {
+    public List<CartDto> getAll() {
         log.info("getAll() method called");
-        return studentMapper.toStudentDtoList(studentService.getStudents());
+        return carMapper.toCarDtoList(carService.getStudents());
     }
 
     @GetMapping("/{id}")
-    public StudentDto getById(@PathVariable("id") int id) {
+    public CartDto getById(@PathVariable("id") int id) {
         log.info("getById() method called, id: {}", id);
-        return studentMapper.toStudentDto(studentService.getById(id));
+        return carMapper.toCarDto(carService.getById(id));
     }
 
     @GetMapping("/search")
-    public List<StudentDto> search(@RequestParam("name") String name) {
+    public List<CartDto> search(@RequestParam("name") String name) {
         log.info("search() method called, name: {}", name);
-        return studentMapper.toStudentDtoList(studentService.search(name));
+        return carMapper.toCarDtoList(carService.search(name));
     }
 }
 

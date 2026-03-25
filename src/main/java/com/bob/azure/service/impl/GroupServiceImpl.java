@@ -6,8 +6,8 @@ import java.util.List;
 import org.apache.commons.collections4.IterableUtils;
 import org.springframework.stereotype.Service;
 
-import com.bob.azure.entity.Group;
-import com.bob.azure.repository.GroupRepository;
+import com.bob.azure.entity.Make;
+import com.bob.azure.repository.MakeRepository;
 import com.bob.azure.service.GroupService;
 
 import lombok.RequiredArgsConstructor;
@@ -18,10 +18,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GroupServiceImpl implements GroupService {
 
-    private final GroupRepository groupRepository;
+    private final MakeRepository makeRepository;
 
     @Override
-    public List<Group> getGroups() {
-        return IterableUtils.toList(groupRepository.findAll());
+    public List<Make> getGroups() {
+        return IterableUtils.toList(makeRepository.findAll());
     }
 }

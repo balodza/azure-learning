@@ -1,41 +1,48 @@
-CREATE TABLE Groups
+CREATE TABLE Make
 (
-    id         INT PRIMARY KEY IDENTITY(1,1),
-    group_name NVARCHAR(100) NOT NULL
+    id   INT PRIMARY KEY IDENTITY(1,1),
+    name NVARCHAR(100) NOT NULL
 );
 
-CREATE TABLE Students
+CREATE TABLE Car
 (
-    id         INT PRIMARY KEY IDENTITY(1,1),
-    first_name NVARCHAR(100) NOT NULL,
-    last_name  NVARCHAR(100) NOT NULL,
-    email      NVARCHAR(255) UNIQUE,
-    group_id   INT,
-    CONSTRAINT FK_Student_Group FOREIGN KEY (group_id) REFERENCES Groups (id)
+    id                  INT PRIMARY KEY IDENTITY(1,1),
+    model               NVARCHAR(100) NOT NULL,
+    year                INT,
+    version             NVARCHAR(255),
+    engine_pistons      INT,
+    engine_volume       DOUBLE PRECISION,
+    engine_power        INT,
+    make_id             INT,
+    CONSTRAINT FK_Car_Make FOREIGN KEY (make_id) REFERENCES Make (id)
 );
 
+INSERT INTO Make(name)
+VALUES ('Audi');
+INSERT INTO Make(name)
+VALUES ('BMW');
+INSERT INTO Make(name)
+VALUES ('Mercedes');
+INSERT INTO Make(name)
+VALUES ('Honda');
+INSERT INTO Make(name)
+VALUES ('Toyota');
+INSERT INTO Make(name)
+VALUES ('Kia');
+INSERT INTO Make(name)
+VALUES ('Hyundai');
 
-INSERT INTO Groups(group_name)
-VALUES ('PMI-11');
-INSERT INTO Groups(group_name)
-VALUES ('PMI-12');
-INSERT INTO Groups(group_name)
-VALUES ('PMI-13');
-INSERT INTO Groups(group_name)
-VALUES ('PMI-14');
+INSERT INTO Car(make_id, model, year, version, engine_pistons, engine_volume, engine_power)
+VALUES (1,'A7', 2014, '3.0 TFSI', 6, 3.0, 313);
+INSERT INTO Car(make_id, model, year, version, engine_pistons, engine_volume, engine_power)
+VALUES (1, 'A6', 2024, '2.0 TFSI', 4, 2.0, 249);
+INSERT INTO Car(make_id, model, year, version, engine_pistons, engine_volume, engine_power)
+VALUES (1, 'A4', 2022, '1.4 TFSI', 4, 1.4, 151);
 
-INSERT INTO Students(first_name, last_name, email, group_id)
-VALUES ('Bob', 'St', 'bob@bob.bob', 2);
-INSERT INTO Students(first_name, last_name, email, group_id)
-VALUES ('Taras', 'Klum', 'taras@tkl.net', 2);
-INSERT INTO Students(first_name, last_name, email, group_id)
-VALUES ('Yurik', 'Fedya', 'fedy@gmail.com', 2);
-INSERT INTO Students(first_name, last_name, email, group_id)
-VALUES ('Yurik Duplicate', 'Fedya', 'fedya@gmail.com', 2);
+INSERT INTO Car(make_id, model, year, version, engine_pistons, engine_volume, engine_power)
+VALUES (2, '530', 2014, '3.0D', 6, 3.0, 258);
+INSERT INTO Car(make_id, model, year, version, engine_pistons, engine_volume, engine_power)
+VALUES (2, 'X5', 2022, '3.0D', 6, 3.0, 271);
 
-INSERT INTO Students(first_name, last_name, email, group_id)
-VALUES ('Putiut', 'Catello', 'putiut@gmail.com', 1);
-INSERT INTO Students(first_name, last_name, email, group_id)
-VALUES ('Jessy', 'Catter', 'jessy@gmail.com', 1);
-INSERT INTO Students(first_name, last_name, email, group_id)
-VALUES ('Rocky', 'Red', 'redrocky@gmail.com', 1);
+INSERT INTO Car(make_id, model, year, version, engine_pistons, engine_volume, engine_power)
+VALUES (3, 'GLE', 2018, '400E', 6, 3.0, 330);

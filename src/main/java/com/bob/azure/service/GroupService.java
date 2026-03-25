@@ -3,8 +3,8 @@ package com.bob.azure.service;
 
 import java.util.List;
 
-import com.bob.azure.entity.Group;
+import com.bob.azure.entity.Make;
 
 public interface GroupService {
-    List<Group> getGroups();
+    List<Make> getGroups();
 }
