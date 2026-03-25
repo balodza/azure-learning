@@ -38,6 +38,8 @@ INSERT INTO Car(make_id, model, year, version, engine_pistons, engine_volume, en
 VALUES (1, 'A6', 2024, '2.0 TFSI', 4, 2.0, 249);
 INSERT INTO Car(make_id, model, year, version, engine_pistons, engine_volume, engine_power)
 VALUES (1, 'A4', 2022, '1.4 TFSI', 4, 1.4, 151);
+INSERT INTO Car(make_id, model, year, version, engine_pistons, engine_volume, engine_power)
+VALUES (1, 'Q5', 2023, '2.0 TFSI PHEV', 4, 2.0, 388);
 
 INSERT INTO Car(make_id, model, year, version, engine_pistons, engine_volume, engine_power)
 VALUES (2, '530', 2014, '3.0D', 6, 3.0, 258);
