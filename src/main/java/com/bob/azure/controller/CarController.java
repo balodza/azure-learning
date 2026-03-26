@@ -27,7 +27,7 @@ public class CarController {
     @GetMapping
     public List<CartDto> getAll() {
         log.info("getAll() method called");
-        return carMapper.toCarDtoList(carService.getStudents());
+        return carMapper.toCarDtoList(carService.getCars());
     }
 
     @GetMapping("/{id}")

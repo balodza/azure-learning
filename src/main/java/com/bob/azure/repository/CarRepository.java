@@ -11,7 +11,7 @@ import com.bob.azure.entity.Car;
 @Repository
 public interface CarRepository extends CrudRepository<Car, Integer> {
 
-    Car getStudentById(int id);
+    Car getCarById(int id);
 
     List<Car> getCarsByModelContains(String name);
 }

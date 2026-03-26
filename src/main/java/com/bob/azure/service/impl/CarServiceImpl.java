@@ -24,15 +24,15 @@ public class CarServiceImpl implements CarService {
     private final JsonService jsonService;
 
     @Override
-    public List<Car> getStudents() {
-        final var allStudents = carRepository.findAll();
-        fileService.uploadFile(getFileName("getStudents"), jsonService.toString(allStudents));
-        return IterableUtils.toList(allStudents);
+    public List<Car> getCars() {
+        final var cars = carRepository.findAll();
+        fileService.uploadFile(getFileName("getCars"), jsonService.toString(cars));
+        return IterableUtils.toList(cars);
     }
 
     @Override
     public Car getById(int id) {
-        final var carById = carRepository.getStudentById(id);
+        final var carById = carRepository.getCarById(id);
         fileService.uploadFile(getFileName("getById_%s".formatted(id)), jsonService.toString(carById));
         return carById;
     }

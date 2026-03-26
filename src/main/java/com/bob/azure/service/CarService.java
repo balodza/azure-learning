@@ -6,7 +6,7 @@ import java.util.List;
 import com.bob.azure.entity.Car;
 
 public interface CarService {
-    List<Car> getStudents();
+    List<Car> getCars();
 
     Car getById(int id);
 
