@@ -1,4 +1,4 @@
-package com.bob.azure.entity;
+package com.bob.azure.entity.jpa;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

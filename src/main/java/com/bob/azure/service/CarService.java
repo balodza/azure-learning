@@ -3,7 +3,7 @@ package com.bob.azure.service;
 
 import java.util.List;
 
-import com.bob.azure.entity.Car;
+import com.bob.azure.entity.jpa.Car;
 
 public interface CarService {
     List<Car> getCars();

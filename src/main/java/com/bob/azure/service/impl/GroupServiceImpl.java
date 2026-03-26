@@ -6,8 +6,8 @@ import java.util.List;
 import org.apache.commons.collections4.IterableUtils;
 import org.springframework.stereotype.Service;
 
-import com.bob.azure.entity.Make;
-import com.bob.azure.repository.MakeRepository;
+import com.bob.azure.entity.jpa.Make;
+import com.bob.azure.repository.jpa.MakeRepository;
 import com.bob.azure.service.GroupService;
 
 import lombok.RequiredArgsConstructor;

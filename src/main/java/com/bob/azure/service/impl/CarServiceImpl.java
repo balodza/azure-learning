@@ -2,12 +2,15 @@ package com.bob.azure.service.impl;
 
 
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.commons.collections4.IterableUtils;
 import org.springframework.stereotype.Service;
 
-import com.bob.azure.entity.Car;
-import com.bob.azure.repository.CarRepository;
+import com.bob.azure.entity.mongo.History;
+import com.bob.azure.repository.mongo.HistoryRepository;
+import com.bob.azure.entity.jpa.Car;
+import com.bob.azure.repository.jpa.CarRepository;
 import com.bob.azure.service.FileService;
 import com.bob.azure.service.CarService;
 
@@ -18,6 +21,8 @@ import lombok.RequiredArgsConstructor;
 public class CarServiceImpl implements CarService {
 
     private final CarRepository carRepository;
+    
+    private final HistoryRepository historyRepository;
 
     private final FileService fileService;
 
@@ -26,21 +31,27 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<Car> getCars() {
         final var cars = carRepository.findAll();
-        fileService.uploadFile(getFileName("getCars"), jsonService.toString(cars));
+        final var payload = jsonService.toString(cars);
+        fileService.uploadFile(getFileName("getCars"), payload);
+        saveHistory(payload);
         return IterableUtils.toList(cars);
     }
 
     @Override
     public Car getById(int id) {
         final var carById = carRepository.getCarById(id);
-        fileService.uploadFile(getFileName("getById_%s".formatted(id)), jsonService.toString(carById));
+        final var payload = jsonService.toString(carById);
+        fileService.uploadFile(getFileName("getById_%s".formatted(id)), payload);
+        saveHistory(payload);
         return carById;
     }
 
     @Override
     public List<Car> search(String name) {
         final var result = carRepository.getCarsByModelContains(name);
-        fileService.uploadFile(getFileName("search_%s".formatted(name)), jsonService.toString(result));
+        final var payload = jsonService.toString(result);
+        fileService.uploadFile(getFileName("search_%s".formatted(name)), payload);
+        saveHistory(payload);
         return result;
     }
 
@@ -48,4 +59,12 @@ public class CarServiceImpl implements CarService {
         return System.nanoTime() + "_" + action + ".json";
     }
 
+
+    private void saveHistory(String carsPayload) {
+        History history = History.builder()
+                .id(UUID.randomUUID().toString())
+                .payload(carsPayload)
+                .build();
+        historyRepository.save(history);
+    }
 }

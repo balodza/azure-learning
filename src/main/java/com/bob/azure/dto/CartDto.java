@@ -1,6 +1,6 @@
 package com.bob.azure.dto;
 
-import com.bob.azure.entity.Make;
+import com.bob.azure.entity.jpa.Make;
 
 import lombok.Builder;
 import lombok.Data;

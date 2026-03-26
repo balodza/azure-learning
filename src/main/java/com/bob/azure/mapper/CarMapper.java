@@ -6,7 +6,7 @@ import java.util.List;
 import org.mapstruct.Mapper;
 
 import com.bob.azure.dto.CartDto;
-import com.bob.azure.entity.Car;
+import com.bob.azure.entity.jpa.Car;
 
 @Mapper(componentModel = "spring", uses = {CarMapper.class})
 public interface CarMapper {
