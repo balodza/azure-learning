@@ -8,4 +8,5 @@ import com.bob.azure.entity.mssql.Make;
 
 @Repository
 public interface MakeRepository extends CrudRepository<Make, Integer> {
+    Make findByName(String name);
 }

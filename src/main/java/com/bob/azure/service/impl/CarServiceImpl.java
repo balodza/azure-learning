@@ -7,11 +7,14 @@ import java.util.UUID;
 import org.apache.commons.collections4.IterableUtils;
 import org.springframework.stereotype.Service;
 
+import com.bob.azure.dto.CreateCarDto;
 import com.bob.azure.entity.cosmos.CosmosHistory;
 import com.bob.azure.entity.mssql.Car;
 import com.bob.azure.entity.mongo.History;
+import com.bob.azure.entity.mssql.Make;
 import com.bob.azure.repository.cosmos.CosmosHistoryRepository;
 import com.bob.azure.repository.mssql.CarRepository;
+import com.bob.azure.repository.mssql.MakeRepository;
 import com.bob.azure.repository.mongo.MongoHistoryRepository;
 import com.bob.azure.service.CarService;
 import com.bob.azure.service.FileService;
@@ -23,6 +26,8 @@ import lombok.RequiredArgsConstructor;
 public class CarServiceImpl implements CarService {
 
     private final CarRepository carRepository;
+
+    private final MakeRepository makeRepository;
 
     private final MongoHistoryRepository mongoHistoryRepository;
 
@@ -57,6 +62,33 @@ public class CarServiceImpl implements CarService {
         fileService.uploadFile(getFileName("search_%s".formatted(name)), payload);
         saveHistory(payload);
         return result;
+    }
+
+    @Override
+    public Car create(CreateCarDto createCarDto) {
+        final var make = makeRepository.findByName(createCarDto.getMake());
+        if (make == null) {
+            throw new RuntimeException("Make not found: " + createCarDto.getMake());
+        }
+        final var car = buildCar(createCarDto, make);
+        final var saved = carRepository.save(car);
+        final var payload = jsonService.toString(saved);
+        fileService.uploadFile(getFileName("create"), payload);
+        saveHistory(payload);
+        return saved;
+    }
+
+    private static Car buildCar(CreateCarDto createCarDto, Make make) {
+        final var car = Car.builder()
+                .model(createCarDto.getModel())
+                .year(createCarDto.getYear())
+                .version(createCarDto.getVersion())
+                .engine_pistons(createCarDto.getEnginePistons())
+                .engine_volume(createCarDto.getEngineVolume())
+                .engine_power(createCarDto.getEnginePower())
+                .make(make)
+                .build();
+        return car;
     }
 
     private static String getFileName(String action) {
