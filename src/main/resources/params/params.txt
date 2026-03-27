@@ -1,0 +1,9 @@
+AZURE_STORAGE_CONNECTION_STRING="DefaultEndpointsProtocol=https;AccountName=bobstsstorageaccount;AccountKey==****;EndpointSuffix=core.windows.net";
+COSMOSDB_KEY="=****";
+COSMOSDB_KEY2="=****";
+COSMOSDB_URI="https://bobcarscosmosdb.documents.azure.com:443/;AccountKey==****;";
+DB_PASS=****;
+DB_URL="jdbc:sqlserver://bob-azure-sql.database.windows.net:1433;database=bobscarsdb;user==****@bob-azure-sql;password==****;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+DB_USER={userName};
+MONGO_USER={mongoDbUsername}
+MONGO_PASS==****;

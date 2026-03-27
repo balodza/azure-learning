@@ -7,8 +7,10 @@ import java.util.UUID;
 import org.apache.commons.collections4.IterableUtils;
 import org.springframework.stereotype.Service;
 
+import com.bob.azure.entity.cosmos.CosmosHistory;
 import com.bob.azure.entity.mongo.History;
-import com.bob.azure.repository.mongo.HistoryRepository;
+import com.bob.azure.repository.cosmos.CosmosHistoryRepository;
+import com.bob.azure.repository.mongo.MongoHistoryRepository;
 import com.bob.azure.entity.jpa.Car;
 import com.bob.azure.repository.jpa.CarRepository;
 import com.bob.azure.service.FileService;
@@ -22,7 +24,9 @@ public class CarServiceImpl implements CarService {
 
     private final CarRepository carRepository;
     
-    private final HistoryRepository historyRepository;
+    private final MongoHistoryRepository mongoHistoryRepository;
+    
+    private final CosmosHistoryRepository cosmosHistoryRepository;
 
     private final FileService fileService;
 
@@ -61,10 +65,18 @@ public class CarServiceImpl implements CarService {
 
 
     private void saveHistory(String carsPayload) {
+        final var uuid = UUID.randomUUID().toString();
+        
         History history = History.builder()
-                .id(UUID.randomUUID().toString())
+                .id(uuid)
                 .payload(carsPayload)
                 .build();
-        historyRepository.save(history);
+        mongoHistoryRepository.save(history);
+
+        CosmosHistory cosmosHistory = CosmosHistory.builder()
+                .id(uuid)
+                .payload(carsPayload)
+                .build();
+        cosmosHistoryRepository.save(cosmosHistory);
     }
 }

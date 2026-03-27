@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.bob.azure.entity.mongo.History;
 
 @Repository
-public interface HistoryRepository extends MongoRepository<History, String> {
+public interface MongoHistoryRepository extends MongoRepository<History, String> {
 }
