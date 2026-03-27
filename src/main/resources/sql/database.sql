@@ -6,14 +6,14 @@ CREATE TABLE Make
 
 CREATE TABLE Car
 (
-    id                  INT PRIMARY KEY IDENTITY(1,1),
-    model               NVARCHAR(100) NOT NULL,
-    year                INT,
-    version             NVARCHAR(255),
-    engine_pistons      INT,
-    engine_volume       DOUBLE PRECISION,
-    engine_power        INT,
-    make_id             INT,
+    id             INT PRIMARY KEY IDENTITY(1,1),
+    model          NVARCHAR(100) NOT NULL,
+    year           INT,
+    version        NVARCHAR(255),
+    engine_pistons INT,
+    engine_volume  DOUBLE PRECISION,
+    engine_power   INT,
+    make_id        INT,
     CONSTRAINT FK_Car_Make FOREIGN KEY (make_id) REFERENCES Make (id)
 );
 
@@ -33,7 +33,7 @@ INSERT INTO Make(name)
 VALUES ('Hyundai');
 
 INSERT INTO Car(make_id, model, year, version, engine_pistons, engine_volume, engine_power)
-VALUES (1,'A7', 2014, '3.0 TFSI', 6, 3.0, 313);
+VALUES (1, 'A7', 2014, '3.0 TFSI', 6, 3.0, 313);
 INSERT INTO Car(make_id, model, year, version, engine_pistons, engine_volume, engine_power)
 VALUES (1, 'A6', 2024, '2.0 TFSI', 4, 2.0, 249);
 INSERT INTO Car(make_id, model, year, version, engine_pistons, engine_volume, engine_power)

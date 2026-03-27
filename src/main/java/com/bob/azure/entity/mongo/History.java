@@ -16,6 +16,6 @@ import lombok.NoArgsConstructor;
 public class History {
     @Id
     private String id;
-    
+
     private String payload;
 }
