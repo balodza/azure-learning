@@ -3,7 +3,9 @@ package com.bob.azure.controller;
 
 import java.util.List;
 
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +22,7 @@ import com.bob.azure.service.MakeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+@Validated
 @RestController
 @RequestMapping("/makes")
 @Slf4j
@@ -36,7 +39,7 @@ public class MakeController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MakeDto create(@RequestParam("name") String name) {
+    public MakeDto create(@NotBlank @RequestParam("name") String name) {
         log.info("create() method called, name: {}", name);
         return makeMapper.toMakeDto(makeService.create(name));
     }

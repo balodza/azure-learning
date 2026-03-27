@@ -3,6 +3,7 @@ package com.bob.azure.controller;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,7 +50,7 @@ public class CarController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CartDto create(@RequestBody CreateCarDto createCarDto) {
+    public CartDto create(@Valid @RequestBody CreateCarDto createCarDto) {
         log.info("create() method called");
         return carMapper.toCarDto(carService.create(createCarDto));
     }
