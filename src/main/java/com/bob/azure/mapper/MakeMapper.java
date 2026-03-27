@@ -6,7 +6,7 @@ import java.util.List;
 import org.mapstruct.Mapper;
 
 import com.bob.azure.dto.MakeDto;
-import com.bob.azure.entity.jpa.Make;
+import com.bob.azure.entity.mssql.Make;
 
 @Mapper(componentModel = "spring", uses = {CarMapper.class})
 public interface MakeMapper {

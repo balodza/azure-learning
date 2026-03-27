@@ -8,10 +8,10 @@ import org.apache.commons.collections4.IterableUtils;
 import org.springframework.stereotype.Service;
 
 import com.bob.azure.entity.cosmos.CosmosHistory;
-import com.bob.azure.entity.jpa.Car;
+import com.bob.azure.entity.mssql.Car;
 import com.bob.azure.entity.mongo.History;
 import com.bob.azure.repository.cosmos.CosmosHistoryRepository;
-import com.bob.azure.repository.jpa.CarRepository;
+import com.bob.azure.repository.mssql.CarRepository;
 import com.bob.azure.repository.mongo.MongoHistoryRepository;
 import com.bob.azure.service.CarService;
 import com.bob.azure.service.FileService;

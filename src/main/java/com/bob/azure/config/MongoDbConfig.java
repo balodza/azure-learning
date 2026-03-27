@@ -12,7 +12,7 @@ import com.mongodb.client.MongoClients;
 
 @Configuration
 @EnableMongoRepositories(basePackages = "com.bob.azure.repository.mongo")
-public class MongoDbConfiguration extends AbstractMongoClientConfiguration {
+public class MongoDbConfig extends AbstractMongoClientConfiguration {
 
     @Value("${spring.data.mongodb.uri}")
     private String uri;
