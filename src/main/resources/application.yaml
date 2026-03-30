@@ -10,6 +10,10 @@ spring:
       database: carsdb
   cloud:
     azure:
+      storage:
+        queue:
+          account-name: bobstsstorageaccount
+          queue-name: bobazurequeue
       cosmos:
         endpoint: ${COSMOSDB_URI}
         key: ${COSMOSDB_KEY}

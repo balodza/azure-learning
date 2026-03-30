@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.apache.commons.collections4.IterableUtils;
 import org.springframework.stereotype.Service;
 
+import com.azure.storage.queue.QueueClient;
 import com.bob.azure.dto.CreateCarDto;
 import com.bob.azure.dto.DeleteCarDto;
 import com.bob.azure.entity.cosmos.CosmosHistory;
@@ -19,6 +20,7 @@ import com.bob.azure.repository.mssql.CarRepository;
 import com.bob.azure.repository.mssql.MakeRepository;
 import com.bob.azure.service.CarService;
 import com.bob.azure.service.FileService;
+import com.bob.azure.service.QueueService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -38,12 +40,14 @@ public class CarServiceImpl implements CarService {
 
     private final JsonService jsonService;
 
+    private final QueueService queueService;
+
     @Override
     public List<Car> getCars() {
         final var cars = carRepository.findAll();
         final var payload = jsonService.toString(cars);
         fileService.uploadFile(getFileName("getCars"), payload);
-        saveHistory(payload);
+        saveAndNotify(payload);
         return IterableUtils.toList(cars);
     }
 
@@ -52,7 +56,7 @@ public class CarServiceImpl implements CarService {
         final var carById = carRepository.getCarById(id);
         final var payload = jsonService.toString(carById);
         fileService.uploadFile(getFileName("getById_%s".formatted(id)), payload);
-        saveHistory(payload);
+        saveAndNotify(payload);
         return carById;
     }
 
@@ -61,7 +65,7 @@ public class CarServiceImpl implements CarService {
         final var result = carRepository.getCarsByModelContains(name);
         final var payload = jsonService.toString(result);
         fileService.uploadFile(getFileName("search_%s".formatted(name)), payload);
-        saveHistory(payload);
+        saveAndNotify(payload);
         return result;
     }
 
@@ -75,7 +79,7 @@ public class CarServiceImpl implements CarService {
         final var saved = carRepository.save(car);
         final var payload = jsonService.toString(saved);
         fileService.uploadFile(getFileName("create"), payload);
-        saveHistory(payload);
+        saveAndNotify(payload);
         return saved;
     }
 
@@ -88,7 +92,7 @@ public class CarServiceImpl implements CarService {
         carRepository.deleteById(car.getId());
         final var payload = jsonService.toString(car);
         fileService.uploadFile(getFileName("delete_%s_%s".formatted(deleteCarDto.getMake(), deleteCarDto.getModel())), payload);
-        saveHistory(payload);
+        saveAndNotify(payload);
     }
 
     private static Car buildCar(CreateCarDto createCarDto, Make make) {
@@ -109,7 +113,7 @@ public class CarServiceImpl implements CarService {
     }
 
 
-    private void saveHistory(String carsPayload) {
+    private void saveAndNotify(String carsPayload) {
         final var uuid = UUID.randomUUID().toString();
 
         History history = History.builder()
@@ -123,5 +127,7 @@ public class CarServiceImpl implements CarService {
                 .payload(carsPayload)
                 .build();
         cosmosHistoryRepository.save(cosmosHistory);
+
+        queueService.send(carsPayload);
     }
 }
