@@ -26,7 +26,7 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @Scheduled(fixedDelay = 10000)
+    @Scheduled(fixedDelay = 30000)
     public void readMessages() {
         log.info("Reading messages from queue...");
         var messages = queueService.receiveMessages(32);

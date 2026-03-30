@@ -1,9 +1,1 @@
-AZURE_STORAGE_CONNECTION_STRING="DefaultEndpointsProtocol=https;AccountName=bobstsstorageaccount;AccountKey==****;EndpointSuffix=core.windows.net";
-COSMOSDB_KEY="=****";
-COSMOSDB_KEY2="=****";
-COSMOSDB_URI="https://bobcarscosmosdb.documents.azure.com:443/;AccountKey==****;";
-DB_PASS=****;
-DB_URL="jdbc:sqlserver://bob-azure-sql.database.windows.net:1433;database=bobscarsdb;user==****@bob-azure-sql;password==****;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-DB_USER={userName};
-MONGO_USER={mongoDbUsername}
-MONGO_PASS==****;
+AZURE_CLIENT_ID=a40c949e-c1a4-42f8-8094-10081a3eab39;AZURE_CLIENT_SECRET=tjo8Q~eDYD2SGTeao~A4sMhAelUelKxO9lLfjbuR;AZURE_STORAGE_CONNECTION_STRING="DefaultEndpointsProtocol=https;AccountName=bobstsstorageaccount;AccountKey=dSqt84VJ65QPBmtJz4xpkLjpi6EycWv8HdgmzT87/pRZ9HN3+m/DGc+/Yw3LGo9SBIS43ASdnvmU+AStcYFV+A==;EndpointSuffix=core.windows.net";AZURE_TENANT_ID=0d64cc04-da6e-4867-8b27-b71a3e02bc62;COSMOSDB_KEY="Vbh7tzi5bMmJPxwtTTx1YOWnaVeeTpleIHdKElpTsur6Ey6okAvxYbvFt5N3q0yffV49AstfqVn8ACDb2Frmow==";COSMOSDB_KEY2="5bndPhaAkKMN0a76B58wSQmru8dsDBldxIpYlU8B5eXpDl9UuYyfjHJMUoBVml6johVnJmlEQuUYACDb5tQHOQ==";COSMOSDB_URI="https://bobcarscosmosdb.documents.azure.com:443/;AccountKey=Vbh7tzi5bMmJPxwtTTx1YOWnaVeeTpleIHdKElpTsur6Ey6okAvxYbvFt5N3q0yffV49AstfqVn8ACDb2Frmow==;";DB_PASS=Vova9207;DB_URL="jdbc:sqlserver://bob-azure-sql.database.windows.net:1433;database=bobscarsdb;user=CloudSAb133fe8b@bob-azure-sql;password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";DB_USER=CloudSAb133fe8b@bob-azure-sql;MONGO_PASS=Vova9207;MONGO_USER=bobadmin
