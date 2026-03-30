@@ -16,4 +16,6 @@ public interface CarRepository extends CrudRepository<Car, Integer> {
     List<Car> getCarsByModelContains(String name);
 
     List<Car> findCarsByMakeId(int makeId);
+
+    Car findCarByModelAndMakeName(String model, String makeName);
 }

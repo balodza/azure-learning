@@ -8,6 +8,7 @@ import org.apache.commons.collections4.IterableUtils;
 import org.springframework.stereotype.Service;
 
 import com.bob.azure.dto.CreateCarDto;
+import com.bob.azure.dto.DeleteCarDto;
 import com.bob.azure.entity.cosmos.CosmosHistory;
 import com.bob.azure.entity.mongo.History;
 import com.bob.azure.entity.mssql.Car;
@@ -76,6 +77,18 @@ public class CarServiceImpl implements CarService {
         fileService.uploadFile(getFileName("create"), payload);
         saveHistory(payload);
         return saved;
+    }
+
+    @Override
+    public void delete(DeleteCarDto deleteCarDto) {
+        final var car = carRepository.findCarByModelAndMakeName(deleteCarDto.getModel(), deleteCarDto.getMake());
+        if (car == null) {
+            throw new RuntimeException("Car not found: make=%s model=%s".formatted(deleteCarDto.getMake(), deleteCarDto.getModel()));
+        }
+        carRepository.deleteById(car.getId());
+        final var payload = jsonService.toString(car);
+        fileService.uploadFile(getFileName("delete_%s_%s".formatted(deleteCarDto.getMake(), deleteCarDto.getModel())), payload);
+        saveHistory(payload);
     }
 
     private static Car buildCar(CreateCarDto createCarDto, Make make) {

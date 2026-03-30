@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bob.azure.dto.CartDto;
 import com.bob.azure.dto.CreateCarDto;
+import com.bob.azure.dto.DeleteCarDto;
 import com.bob.azure.mapper.CarMapper;
 import com.bob.azure.service.CarService;
 
@@ -53,6 +55,13 @@ public class CarController {
     public CartDto create(@Valid @RequestBody CreateCarDto createCarDto) {
         log.info("create() method called");
         return carMapper.toCarDto(carService.create(createCarDto));
+    }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@Valid @RequestBody DeleteCarDto deleteCarDto) {
+        log.info("delete() method called, make: {}, model: {}", deleteCarDto.getMake(), deleteCarDto.getModel());
+        carService.delete(deleteCarDto);
     }
 }
 
