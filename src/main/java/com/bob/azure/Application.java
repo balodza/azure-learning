@@ -33,5 +33,6 @@ public class Application {
         messages.forEach(m -> {
             log.info("Received message: {}", new String(m.getBody().toBytes())); 
         });
+        log.info("Completed reading messages from queue...");
     }
 }
