@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mvn test:*)",
+      "Bash(./mvnw test:*)",
+      "Bash(mvn versions:display-dependency-updates:*)",
+      "Bash(mvn versions:use-latest-releases:*)"
+    ]
+  }
+}
