@@ -27,6 +27,7 @@ import com.bob.azure.repository.mongo.MongoHistoryRepository;
 import com.bob.azure.repository.mssql.CarRepository;
 import com.bob.azure.repository.mssql.MakeRepository;
 import com.bob.azure.service.FileService;
+import com.bob.azure.service.QueueService;
 
 @ExtendWith(MockitoExtension.class)
 class CarServiceImplTest {
@@ -41,6 +42,8 @@ class CarServiceImplTest {
     CosmosHistoryRepository cosmosHistoryRepository;
     @Mock
     FileService fileService;
+    @Mock
+    QueueService queueService;
     @Mock
     JsonService jsonService;
     @InjectMocks

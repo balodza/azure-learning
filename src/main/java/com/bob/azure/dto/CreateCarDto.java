@@ -1,5 +1,6 @@
 package com.bob.azure.dto;
 
+import com.bob.azure.validation.ValidCarMake;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
@@ -8,6 +9,7 @@ import lombok.Data;
 @Data
 public class CreateCarDto {
     @NotBlank
+    @ValidCarMake
     private String make;
     @NotBlank
     private String model;
